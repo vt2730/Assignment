@@ -3,6 +3,9 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
+
+const routes = require('./routes');
+
 require('dotenv').config();
 
 const MONGODB_URI = process.env.MONGO_URL;
@@ -24,7 +27,7 @@ mongoose
             }, 2000);
         });
   
-// app.use("/api", routes);
+app.use("/api", routes);
 
 app.listen("5000",() => {
     console.log("Server is running");

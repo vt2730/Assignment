@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -9,17 +9,9 @@ const bookSchema = new Schema({
     author: {
         type: String,
     },
-    availabilityStatus: {
+    availability: {
         type: Boolean,
-    },
-    created_at: {
-        type: Number,
-        default: Date.now(),
-    },
-    updated_at: {
-        type: Number,
-        default: Date.now(),
-    },
-})
+    },   
+},{timestamps: true})
 
-export default mongoose.model('books',bookSchema);
+module.exports = mongoose.model('books',bookSchema);
