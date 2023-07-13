@@ -1,0 +1,42 @@
+# Directories
+node_modules/
+dist/
+coverage/
+
+# Environment variables
+.env
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# OS generated files
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# Build files
+build/
+
+# Dependency lock files
+package-lock.json
+yarn.lock
+
+# IDE-specific files
+*.iml
+
+# Production build output
+build/
+
+# Development environment
+.env.development
+.env.local
+
+# Production environment
+.env.production
+.env.prod
+
+# Test environment
+.env.test
