@@ -4,7 +4,7 @@ const md5 = require('md5');
 function createUser(req){
     return new Promise(async (resolve, reject) => {
         try{
-            const user = await UserModel.findOne({
+            const user = await userModel.findOne({
                 email: req.body?.email?.toLowerCase(),
             });
             if(user) {
@@ -72,7 +72,7 @@ function login(req){
             });
         }
         // Check if password is correct
-        if(user?.password !== password){
+        if(user?.password !== md5(password)){
             return reject({
                 status: 400,
                 error: true,
@@ -92,13 +92,14 @@ function login(req){
                 role: user.role,
             },
             code: "LOGIN_SUCCESSFUL",
-            message: messages["LOGIN_SUCCESSFUL"],    
+            message: "LOGIN_SUCCESSFUL",    
         });
         }catch(err){
+            console.error(err,"login error")
             return reject({
                 error: true,
                 status: 500,
-                err: error,
+                err: err,
                 code: "INTERNAL_SERVER_ERROR",
                 message: "INTERNAL_SERVER_ERROR",
               });
