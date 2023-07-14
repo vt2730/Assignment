@@ -16,11 +16,16 @@ const userSchema = new Schema({
         required: true,
         unique: true,
     },
+    password: {
+        type: String,
+        required: true,
+    },
     phone: {
         type: String,
     },
     role: {
         type: String,
+        required: true,
         default: "user",
         ebum: ["admin", "user"],
     }
