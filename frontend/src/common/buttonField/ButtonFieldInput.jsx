@@ -1,7 +1,6 @@
 import React from "react";
 import { CircularProgress } from "@mui/material";
 import Button from "@mui/material/Button";
-import Image from "next/image";
 
 const ButtonFieldInput = (props) => {
     return (
@@ -26,7 +25,7 @@ const ButtonFieldInput = (props) => {
                 <div className='flex items-center justify-center w-full'>
                     {props.img && (
                         <div className='mr-2 flex'>
-                            <Image
+                            <img
                                 src={props.img}
                                 height={props.height ? props.height : 20}
                                 width={props.width ? props.width : 20}
