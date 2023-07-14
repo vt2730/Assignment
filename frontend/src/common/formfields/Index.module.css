@@ -1,0 +1,9 @@
+.textfieldclass input {
+    height: 14px !important;
+    /* padding: 14px 10px !important; */
+    border-radius: 20%;
+  }
+  
+  .inputCss .MuiInputBase-root {
+    border-radius: 12px;
+  }
