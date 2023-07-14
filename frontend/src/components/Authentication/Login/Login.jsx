@@ -28,7 +28,7 @@ const Login = (props) => {
                 textinputname="email"
                 id='email'
                 onChange={props.LoginForm.handleChange}
-                value={props.ManagementForm?.values.email}
+                value={props.LoginForm?.values.email}
                 textnewclass={`w-full`}
                 error={
                   props.LoginForm.touched.email && Boolean(props.LoginForm.errors.email)
@@ -47,7 +47,7 @@ const Login = (props) => {
                 passwordinputText="password"
                 textnewclass={`w-full`}
                 onChange={props.LoginForm.handleChange}
-                value={props.ManagementForm?.values.password}
+                value={props.LoginForm?.values.password}
                 error={
                   props.LoginForm.touched.password &&
                   Boolean(props.LoginForm.errors.password)

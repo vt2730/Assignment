@@ -18,7 +18,7 @@ export const ForLogin = () => {
                 .required("Password field is Required")
         }),
         onSubmit: (values) => {
-            // console.log(values, "values");
+            console.log(values, "login values *");
             // login(values)
         },
     });

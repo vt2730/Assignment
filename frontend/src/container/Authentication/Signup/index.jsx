@@ -1,9 +1,14 @@
 import React from 'react'
+import Signup from '../../../components/Authentication/Signup/Signup'
+import { ForSignUp } from './Hooks'
 
-const index = () => {
+const SignupMain = () => {
+  const{signupForm} = ForSignUp()
   return (
-    <div>index</div>
+    <div>
+      <Signup signupForm={signupForm}/>
+    </div>
   )
 }
 
-export default index
+export default SignupMain
