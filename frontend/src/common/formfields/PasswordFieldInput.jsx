@@ -21,7 +21,9 @@ const PasswordFieldInput = (props) => {
 
     return (
         <div className={` flex flex-col textFieldCss relative ${props.extracls}`}>
-            <label className={`input-label ${props.labelcls}`}>{props.label}</label>
+            <label className={`text-[14px] font-bold flex text-left flex-col  mb-1${props.lableCls}`}>
+                {props.label}
+            </label>
             <TextField
                 autoFocus={props.autoFocus}
                 onChange={props.onChange}

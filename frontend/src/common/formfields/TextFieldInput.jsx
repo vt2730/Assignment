@@ -42,7 +42,7 @@ function TextFieldInput(props) {
     };
     return (
         <div className={`relative flex flex-col ${props.extracls} textFieldCss `}>
-            <label className={`text-[14px] flex flex-col ${props.lableCls}`}>
+            <label className={`text-[14px] font-bold flex text-left flex-col ${props.lableCls}`}>
                 {props.label}
             </label>
             <TextField

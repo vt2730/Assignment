@@ -1,9 +1,14 @@
 import React from 'react'
+import Login from '../../../components/Authentication/Login/Login'
+import { ForLogin } from './Hooks'
 
-const index = () => {
+const LoginMain = () => {
+  const { LoginForm } = ForLogin()
   return (
-    <div>index</div>
+    <>
+      <Login LoginForm={LoginForm}/>
+    </>
   )
 }
 
-export default index
+export default LoginMain
