@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -19,14 +19,11 @@ const userSchema = new Schema({
     phone: {
         type: String,
     },
-    created_at: {
-        type: Number,
-        default: Date.now(),
-    },
-    updated_at: {
-        type: Number,
-        default: Date.now(),
-    },
-});
+    role: {
+        type: String,
+        default: "user",
+        ebum: ["admin", "user"],
+    }
+},{timestamps: true});
 
-export default mongoose.model("users", userSchema);
+module.exports = mongoose.model("users", userSchema);

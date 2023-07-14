@@ -1,4 +1,4 @@
-import * as mongoose from "mongoose";
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -20,6 +20,6 @@ const libraryTransaction = new Schema({
         type: Number,
         default: Date.now(),
     }
-});
+},{timestamps: true});
 
-export default mongoose.model("libraryTransaction", libraryTransaction);
+module.exports = mongoose.model("libraryTransaction", libraryTransaction);
