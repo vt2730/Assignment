@@ -1,8 +1,6 @@
-
-// import routes from "./router";
-
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const routes = require('./routes');
 
@@ -12,12 +10,13 @@ const MONGODB_URI = process.env.MONGO_URL;
 const app = express();
 app.use(express.json());
 
+const whitelist = ["http://localhost:3000", "http://localhost:3001","http://localhost:3001"];
+
 mongoose
         .set('strictQuery', true)
         .connect(MONGODB_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,
-            // useCreateIndex: true,
         })
         .then(() => console.log("👉🏾👉🏾 Connected to mongoDb"))
         .catch((err) => {
@@ -26,7 +25,8 @@ mongoose
                 process.exit(1);
             }, 2000);
         });
-  
+
+app.use(cors({ origin: whitelist, credentials: true }));
 app.use("/api", routes);
 
 app.listen("5000",() => {
