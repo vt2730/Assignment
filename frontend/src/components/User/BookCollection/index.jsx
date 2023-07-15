@@ -1,4 +1,6 @@
 import React from 'react'
+import styles from './index.module.css'
+import ButtonFieldInput from "../../../common/buttonField/ButtonFieldInput"
 
 const BooksCollection = (props) => {
   const booksArr = [
@@ -29,15 +31,15 @@ const BooksCollection = (props) => {
             booksArr?.map((item, idx)=>{
               return(
                 <tbody key={idx}>
-                  <tr className={`h-12 "bg-white"`}>
-                    <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.name}</td>
+                  <tr className={`h-12 bg-white`}>
+                    <td className={`text-left text-[#252525] text-[13px] font-normal pl-4`}>{item?.name}</td>
                     <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.author}</td>
                     <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.status}</td>
                     <td className={``}>
                       <ButtonFieldInput
                         name="Borrow"
                         variant="contained"
-                        buttonextracls={`!bg-blue-900 w-full !rounded-lg !py-3`}
+                        buttonextracls={`!bg-blue-900 !rounded-lg !capitalize`}
                         // handleClick={}
                       />
                     </td>
