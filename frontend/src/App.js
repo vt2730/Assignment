@@ -5,6 +5,7 @@ import LoginMain from './container/Authentication/Login';
 import SignupMain from './container/Authentication/Signup';
 import BooksCollectionMain from './container/User/BookCollection';
 import MyBooksMain from './container/User/MyBooks';
+import BooksDetailsMain from './container/Admin/BooksDetails';
 
 
 function App() {
@@ -14,7 +15,8 @@ function App() {
       {/* <LoginMain/> */}
       {/* <SignupMain/> */}
       {/* <BooksCollectionMain/> */}
-      <MyBooksMain/>
+      {/* <MyBooksMain/> */}
+      <BooksDetailsMain/>
     </div>
   );
 }
