@@ -13,8 +13,8 @@ const libraryTransaction = new Schema({
     },
     transactionType: {
         type: String,
-        default: "borrow",
-        enum: ["borrow", "return"],
+        default: "active",
+        enum: ["borrow", "return","active"],
     },
     dueDate: {
         type: Number,

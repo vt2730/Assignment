@@ -107,7 +107,40 @@ function login(req){
     })
 }
 
+function allUsers(req){
+    return new Promise(async (resolve, reject) => {
+        try{
+            const user = await userModel.find();
+            if(!user){
+                return reject({
+                  status: 404,
+                  error: true,
+                  result: [],
+                  code: "USER_NOT_FOUND",
+                  message: "User not found"
+                })
+              }
+              return resolve({
+                status: 200,
+                error: false,
+                result: user,
+                code: "USER_FOUND",
+                message: "User found"
+              })
+        }catch(error){
+            return reject({
+                status: 500,
+                error: true,
+                err: error,
+                code: "INTERNAL_SERVER_ERROR",
+                message: "INTERNAL_SERVER_ERROR"
+              })
+        }
+    })
+}
+
 module.exports = {
     createUser,
-    login
+    login,
+    allUsers
 }

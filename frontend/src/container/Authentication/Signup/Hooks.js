@@ -2,7 +2,9 @@ import { useFormik } from 'formik';
 import * as Yup from "yup"
 import { doPostApiCall } from '../../../utils/ApiConfig';
 
+const PUBLIC_apiurl = 'http://192.168.1.6:5000/api'
 export const ForSignUp = () => {
+
 
     const signupForm = useFormik({
         initialValues: {
@@ -46,7 +48,7 @@ export const ForSignUp = () => {
 
     const signup = (values) => {
         let data = {
-            url: ``,
+            url: `${PUBLIC_apiurl}/users`,
             bodyData: {
                 name: values.name,
                 email: values.email,
@@ -56,7 +58,6 @@ export const ForSignUp = () => {
         doPostApiCall(data)
             .then((res)=>{
                 if(!res.error){
-
                 }
             })
             .catch((err)=>{
