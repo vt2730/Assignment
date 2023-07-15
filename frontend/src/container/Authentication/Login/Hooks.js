@@ -3,6 +3,7 @@ import * as Yup from "yup"
 import { doPostApiCall } from '../../../utils/ApiConfig';
 
 
+const PUBLIC_apiurl = 'http://192.168.1.6:5000/api';
 export const ForLogin = () => {
 
 
@@ -26,7 +27,7 @@ export const ForLogin = () => {
 
     const login = (values) => {
         let data = {
-            url: ``,
+            url: `${PUBLIC_apiurl}/users/login`,
             bodyData: {
                 email: values.email,
                 password: values.password
@@ -35,7 +36,7 @@ export const ForLogin = () => {
         doPostApiCall(data)
             .then((res)=>{
                 if(!res.error){
-
+                    
                 }
             })
             .catch((err)=>{

@@ -41,6 +41,39 @@ function create(req){
       });
 }
 
+function deleteBook(req){
+  return Promise(async (resolve, reject) => {
+    try{
+      const book = await booksModel.findById(req.params.id);
+      if(!book){
+        return reject({
+          status: 404,
+          error: true,
+          code: "BOOK_NOT_FOUND",
+          message: "BOOK_NOT_FOUND"
+      })
+      }
+      const updatedItem = await item.save()
+        return resolve({
+          status: 200,
+          error: false,
+          result: updatedItem,
+          code: "ITEM_DELETED",
+          message: messages["ITEM_DELETED"]
+        })
+    }catch(error){
+      return reject({
+        status: 500,
+        error: true,
+        err: error,
+        code: "INTERNAL_SERVER_ERROR",
+        message: "INTERNAL_SERVER_ERROR"
+    })
+    }
+  })
+}
+
 module.exports = {
-    create
+    create,
+    deleteBook
 }
