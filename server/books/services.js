@@ -89,7 +89,7 @@ function getBooks(req){
         error: true,
         err: error,
         code: "INTERNAL_SERVER_ERROR",
-        message: messages["INTERNAL_SERVER_ERROR"]
+        message: "INTERNAL_SERVER_ERROR"
       })
     }
   })
