@@ -7,7 +7,6 @@ import Headerlayout from "../../../common/Headerlayout"
 const BooksCollectionMain = () => {
   return (
     <div className={`bg-[#F0F2F9] h-screen`}>
-      {/* <BooksCollection/> */}
       <TwohalfLayout
         sidebarsection={<SideBar />}
         rendercomponent={<BooksCollection />}
