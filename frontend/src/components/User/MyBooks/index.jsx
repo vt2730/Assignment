@@ -35,7 +35,11 @@ const MyBooks = () => {
                   <tr className={`h-12 bg-white`}>
                     <td className={`text-left text-[#252525] text-[13px] font-normal pl-4`}>{item?.name}</td>
                     <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.author}</td>
-                    <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.status}</td>
+                    <td className={`text-center text-[13px] font-normal pr-5 `}>
+                      <div className={`rounded-3xl w-[6rem] py-1 text-white capitalize ${item?.status === 'available' ? "bg-[#F44336]" : "bg-[#00C853]"}`}>
+                        {item?.status}
+                      </div>
+                    </td>
                     <td className={``}>
                       <ButtonFieldInput
                         name="Borrow"
