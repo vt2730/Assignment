@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from "yup"
+import { doPostApiCall } from '../../../utils/ApiConfig';
 
 
 export const ForLogin = () => {
@@ -19,9 +20,29 @@ export const ForLogin = () => {
         }),
         onSubmit: (values) => {
             console.log(values, "login values *");
-            // login(values)
+            login(values)
         },
     });
+
+    const login = (values) => {
+        let data = {
+            url: ``,
+            bodyData: {
+                email: values.email,
+                password: values.password
+            }
+        }
+        doPostApiCall(data)
+            .then((res)=>{
+                if(!res.error){
+
+                }
+            })
+            .catch((err)=>{
+                console.error(err)
+            })
+    }
+
     return{
         LoginForm
     }
