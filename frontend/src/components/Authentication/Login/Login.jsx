@@ -4,8 +4,10 @@ import style from "./index.module.css"
 import TextFieldInput from "../../../common/formfields/TextFieldInput"
 import PasswordFieldInput from "../../../common/formfields/PasswordFieldInput"
 import ButtonFieldInput from "../../../common/buttonField/ButtonFieldInput"
+import { useNavigate } from 'react-router-dom'
 
 const Login = (props) => {
+  const navigate = useNavigate()
   return (
     <div className={`h-screen w-full ${style.login_div} flex justify-center  `} >
       <form onSubmit={props.LoginForm.handleSubmit} className={`w-full flex flex-col justify-center h-full items-center sm:min-w-fit `} >
@@ -17,7 +19,7 @@ const Login = (props) => {
           <div className='flex flex-col gap-3 w-full px-9' >
             <span className={` text-2xl font-bold `}>Login
             </span>
-            <p className={`text-sm text-slate-400`} >Don't have an account<span className='text-sm font-semibold cursor-pointer text-blue-900'> Sign up</span></p>
+            <p className={`text-sm text-slate-400`} >Don't have an account<span className='text-sm font-semibold cursor-pointer text-blue-900' onClick={()=> navigate('/signup')}> Sign up</span></p>
           </div>
           <div className='flex flex-col gap-3 w-full'>
             <div className={`px-9 w-full`}>

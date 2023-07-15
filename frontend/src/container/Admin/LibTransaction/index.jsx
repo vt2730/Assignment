@@ -1,9 +1,9 @@
 import React from 'react'
 
-const index = () => {
+const LibraryTransactionMain = () => {
   return (
-    <div>index</div>
+    <div>LibraryTransactionMain</div>
   )
 }
 
-export default index
+export default LibraryTransactionMain

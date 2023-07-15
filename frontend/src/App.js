@@ -11,12 +11,12 @@ import BooksDetailsMain from './container/Admin/BooksDetails';
 function App() {
   return (
     <div className="App">
-      {/* <RouterProvider router={router} /> */}
+      <RouterProvider router={router} />
       {/* <LoginMain/> */}
       {/* <SignupMain/> */}
       {/* <BooksCollectionMain/> */}
       {/* <MyBooksMain/> */}
-      <BooksDetailsMain/>
+      {/* <BooksDetailsMain/> */}
     </div>
   );
 }
