@@ -1,19 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import LibraryTransaction from '../../../components/Admin/LibTransaction'
 import SideBar from '../../../components/Layout/SideBar/SideBar'
 import TwohalfLayout from '../../../components/Layout/TwohalfLayout'
 import Headerlayout from '../../../common/Headerlayout'
+import { ForLibTransaction } from './Hooks'
 
 const LibraryTransactionMain = () => {
+  const {getAllTransaction} = ForLibTransaction()
+
+  useEffect(()=>{
+    getAllTransaction()
+  },[])
   return (
-    <div>
+    <div className={`bg-[#F0F2F9] h-screen`}>
       <TwohalfLayout
           sidebarsection={<SideBar />}
           rendercomponent={<LibraryTransaction />}
           isHeader={true}
 
           commonheader={<Headerlayout
-            name={"Book Details"}
+            name={"Transactions"}
             isbutton={false}
             addbutton={false}
           />}

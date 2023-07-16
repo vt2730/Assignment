@@ -7,3 +7,16 @@
   .inputCss .MuiInputBase-root {
     border-radius: 12px;
   }
+
+  .datepickerMain{
+    display: flex;
+    flex-direction: column;
+  }
+  .datepickerMain input {
+    border: 1px solid rgb(183, 183, 183);
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    font-weight: 400;
+    width: 100%;
+  }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useFormik } from 'formik';
 import * as Yup from "yup"
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,28 @@ import getLocalStorageData from "../../../utils/getLocalStorageData"
 const PUBLIC_apiurl = 'http://192.168.1.6:5000/api';
 export const ForBookDetails = () => {
     const role = getLocalStorageData('role')
+    const [openBorrowModal, setOpenBorrowModal] = useState(false);
+    const [selectedBook,setSelectedBook] = useState(null)
+    const [dateFilter, setDateFilter] = useState(null);
+
+    const handleOpenModal = (bookItem) => {
+        setOpenBorrowModal(true);
+        setSelectedBook(bookItem)
+    }
+
+    const handleCloseModal = () => {
+        setOpenBorrowModal(false);
+        borrowFormik?.resetForm()
+        setDateFilter(null)
+    }
+
+    const handleDateFilter = (date) => {
+        setDateFilter(date);
+    }
+
+    // useEffect(()=>{
+    //     console.log(selectedBook,"selectedBook *")
+    // },[selectedBook])
 
     const [notification, setNotification] = useState({
         open: false,
@@ -52,6 +74,10 @@ export const ForBookDetails = () => {
         setFormOpen(true);
     }
 
+    const handleFormClose = () => {
+        setFormOpen(false);
+    }
+
     const handleDelte = (book) => {
         deleteBooks(book?._id)
     }
@@ -64,17 +90,34 @@ export const ForBookDetails = () => {
         },
         validationSchema: Yup.object().shape({
             name: Yup.string()
-            .required("Email field cannot be empty"),
+            .required("Name field cannot be empty"),
             author: Yup.string()
-                .required("Password field is Required"),
+                .required("Author field is Required"),
             status: Yup.string()
-            .required("Password field is Required"),
+            .required("Availability field is Required"),
         }),
         onSubmit: (values) => {
             console.log(values, "login values *");
             createBook(values);
         },
     });
+
+    const borrowFormik = useFormik({
+        initialValues: {
+            user: "",
+        },
+        validationSchema: Yup.object().shape({
+            user: Yup.string()
+            .required("Email field cannot be empty"),
+        }),
+        onSubmit: (values) => {
+            let obj={
+                ...values,
+                dateFilter
+            }
+            BorrowBook(obj);
+        },
+    })
     
     const createBook = (values) => {
         if(role === 'admin'){
@@ -145,6 +188,33 @@ export const ForBookDetails = () => {
 
         }
     }
+
+    const BorrowBook = (values) => {
+        
+        let data = {
+            url: `${PUBLIC_apiurl}/transactions`,
+            bodyData: {
+                userId: values?.user,
+                bookId: selectedBook?._id,
+                dueDate: values?.dateFilter
+            }
+        }
+        doPostApiCall(data)
+            .then((res) => {
+                if(!res.error){
+                    setOpenBorrowModal(false);
+                    getAllBooks()
+                    openMessageLogin("success", "Success", res.message, "success")
+                }else if(res?.code === "TRANSACTION_CREATE_FAILED"){
+                    openMessageLogin("error", "Error", res.message, "error")
+                }else {
+                    openMessageLogin("error", "Error", res.message, "error")
+                }
+            })
+            .catch((err) => {
+                console.error(err)
+            });
+    }
     return {
         handleOpenForm,
         formOpen,
@@ -153,5 +223,13 @@ export const ForBookDetails = () => {
         handleDelte,
         messageClose,
         notification,
+        handleFormClose,
+        openBorrowModal,
+        handleOpenModal,
+        handleCloseModal,
+        selectedBook,
+        borrowFormik,
+        handleDateFilter,
+        dateFilter
     }
 }

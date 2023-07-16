@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 
 export const initialState = {
-    transaction: [],
+    transactionDetails: [],
     loading: false,
     error: false,
   };
@@ -13,7 +13,7 @@ export const initialState = {
     initialState,
     reducers: {
       getTransaction: (state, action) => {
-        state.transaction = action.payload;
+        state.transactionDetails = action.payload;
         state.loading = true;
         state.error = false;
       },

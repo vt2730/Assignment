@@ -28,6 +28,7 @@ const SideBar = () => {
                 break;
             case "/admin/bookdetails":
                 setActive("Book Details");
+                break;
             case "/admin/transaction":
                 setActive("Transaction");
                 break;

@@ -1,0 +1,5 @@
+.Table_collapse {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+    /* animation: trackerTableAnimation forwards 1.5s; */
+}
