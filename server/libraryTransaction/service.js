@@ -6,8 +6,6 @@ function borrowBook(req){
     return new Promise(async (resolve, reject) => {
         try{
             const{ userId, bookId, dueDate} = req.body;
-
-            
             const transaction = new transactionModel({
                 user: userId,
                 book: bookId,
@@ -19,17 +17,25 @@ function borrowBook(req){
                     status: 400,
                     error: true,
                     code: "TRANSACTION_CREATE_FAILED",
-                    message: "Transaction create failed",
+                    message: "Book borrowed failed",
                   });
             }else{
+                const book = await bookModel.updateOne(
+                    {_id: bookId},
+                    {$set : {"availability" : false}},
+                    {upsert: true}
+                  )
+                  console.log(book,"borrow book")
                 return resolve({
                     status: 201,
                     error: false,
                     result: saveTransaction,
                     code: "TRANSACTION_CREATED",
-                    message: "Transaction created successfully",
+                    message: "Book borrowed successfully",
                   });
+
             }
+
         }catch(error){
             return reject({
                 status: 500,
@@ -45,7 +51,7 @@ function borrowBook(req){
 function getTransaction(req){
     return new Promise(async (resolve, reject) => {
         try{
-            const transaction = await transactionModel();
+            const transaction = await transactionModel.find();
             if(!transaction){
                 return reject({
                     status: 404,

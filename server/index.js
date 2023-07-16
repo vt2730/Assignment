@@ -14,6 +14,7 @@ const whitelist = ["http://localhost:3000", "http://localhost:3001","http://loca
 
 mongoose
         .set('strictQuery', true)
+        .set('strictPopulate', false)
         .connect(MONGODB_URI, {
             useUnifiedTopology: true,
             useNewUrlParser: true,

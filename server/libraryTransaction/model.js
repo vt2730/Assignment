@@ -23,20 +23,20 @@ const libraryTransaction = new Schema({
 },{timestamps: true});
 
 libraryTransaction.pre("save", function (next) {
-    this.populate("users")
+    this.populate("user")
     this.populate("book")
     next()
 })
 
 libraryTransaction.pre("find", function (next) {
-    this.populate("users")
+    this.populate("user")
     this.populate("book")
     next()
 })
 
 libraryTransaction.pre("findOne", function (next) {
     this.populate("user")
-    this.populate("books")
+    this.populate("book")
     next()
 })
 
