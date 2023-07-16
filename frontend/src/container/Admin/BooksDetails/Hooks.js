@@ -10,6 +10,41 @@ const PUBLIC_apiurl = 'http://192.168.1.6:5000/api';
 export const ForBookDetails = () => {
     const role = getLocalStorageData('role')
 
+    const [notification, setNotification] = useState({
+        open: false,
+        message: "",
+        subText: "",
+        alertType: "",
+        borderClass: "",
+    });
+    const messageClose = () => {
+        setNotification({
+            open: false,
+            message: "",
+            subText: "",
+            alertType: "",
+            borderClass: "",
+        });
+    };
+    const timer = () => setTimeout(messageClose, 3000);
+    const openMessageLogin = (
+        alertType,
+        message,
+        subText,
+        borderClass
+    ) => {
+        if (alertType) {
+            setNotification({
+                open: true,
+                message: message,
+                subText: subText,
+                alertType: alertType,
+                borderClass: borderClass,
+            });
+            timer();
+        }
+    };
+
     const dispatch = useDispatch();
     const [formOpen, setFormOpen] = useState(false);
 
@@ -57,8 +92,13 @@ export const ForBookDetails = () => {
                 .then((res)=>{
                     if(!res.error){
                         setFormOpen(false)
+                        openMessageLogin("success", "Success", res.message, "success")
                         getAllBooks()
                         // dispatch(getBooks(res?.result))
+                    }else if(res?.code === "UNAUTHORIZED"){
+                        openMessageLogin("error", "Error", res.message, "error")
+                    }else if(res?.code === "BOOK_CREATE_FAILED"){
+                        openMessageLogin("error", "Error", res.message, "error")
                     }
                 })
                 .catch((err)=>{
@@ -92,7 +132,10 @@ export const ForBookDetails = () => {
             doDeleteApiCall(data)
                 .then((res)=>{
                     if(!res.error) {
+                        openMessageLogin("success", "Success", res.message, "success")
                         getAllBooks();
+                    }else {
+                        openMessageLogin("error", "Error", res.message, "error")
                     }
                 })
                 .catch((err)=>{
@@ -107,6 +150,8 @@ export const ForBookDetails = () => {
         formOpen,
         BookFormFormik,
         getAllBooks,
-        handleDelte
+        handleDelte,
+        messageClose,
+        notification,
     }
 }
