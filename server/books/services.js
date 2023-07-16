@@ -3,30 +3,39 @@ const booksModel = require('./model');
 function create(req){
     return new Promise(async (resolve, reject) => {
         try {
-          const {name, author,availability} = req.body;
-          const newItem = new booksModel({
-            name,
-            author,
-            availability,
-          });
-  
-          const savedItem = await newItem.save();
-  
-          if (!savedItem) {
+          const {name, author,availability, role} = req.body;
+          if(role !== 'admin'){
             return reject({
-              status: 400,
+              status: 401,
               error: true,
-              code: "ITEM_CREATE_FAILED",
-              message: "ITEM_CREATE_FAILED",
+              code: "UNAUTHORIZED",
+              message: "user is not allowed to create book",
             });
-          } else {
-            return resolve({
-              status: 201,
-              error: false,
-              result: savedItem,
-              code: "ITEM_CREATED",
-              message: "ITEM_CREATED"
+          }else{
+            const newItem = new booksModel({
+              name,
+              author,
+              availability,
             });
+    
+            const savedItem = await newItem.save();
+    
+            if (!savedItem) {
+              return reject({
+                status: 400,
+                error: true,
+                code: "BOOK_CREATE_FAILED",
+                message: "Book creation failed",
+              });
+            } else {
+              return resolve({
+                status: 201,
+                error: false,
+                result: savedItem,
+                code: "BOOK_CREATED",
+                message: "Book created successfully"
+              });
+            }
           }
         } catch (error) {
           console.error(error, "<<-- error in item create");
