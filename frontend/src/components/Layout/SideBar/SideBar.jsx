@@ -12,7 +12,8 @@ const SideBar = () => {
     const location = useLocation()
     const [active, setActive] = useState('');
     const handleLogOut = () => {
-        console.log('logout clicked *')
+        localStorage.clear();
+        navigate("/");
     }
 
     const role = getLocalStorageData('role')

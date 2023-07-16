@@ -1,10 +1,12 @@
 import { useFormik } from 'formik';
 import * as Yup from "yup"
 import { doPostApiCall } from '../../../utils/ApiConfig';
+import { useNavigate ,useLocation} from "react-router"
 
 const PUBLIC_apiurl = 'http://192.168.1.6:5000/api'
 export const ForSignUp = () => {
 
+    const navigate = useNavigate();
 
     const signupForm = useFormik({
         initialValues: {
@@ -58,6 +60,7 @@ export const ForSignUp = () => {
         doPostApiCall(data)
             .then((res)=>{
                 if(!res.error){
+                    navigate('/')
                 }
             })
             .catch((err)=>{
