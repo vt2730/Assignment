@@ -6,14 +6,14 @@ import Headerlayout from '../../../common/Headerlayout'
 
 const LibraryTransactionMain = () => {
   return (
-    <div>
+    <div className={`bg-[#F0F2F9] h-screen`}>
       <TwohalfLayout
           sidebarsection={<SideBar />}
           rendercomponent={<LibraryTransaction />}
           isHeader={true}
 
           commonheader={<Headerlayout
-            name={"Book Details"}
+            name={"Transactions"}
             isbutton={false}
             addbutton={false}
           />}
