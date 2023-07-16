@@ -17,11 +17,11 @@ function borrowBook(req){
                     message: "Books not found"
                   })
             }
-            let currDate = new Date()
+            // let currDate = new Date()
             const transaction = new transactionModel({
                 user: user?._id,
                 book: book?._id,
-                dueDate: currDate.setDate(currDate.getDate() + dueDate)
+                dueDate: dueDate
             })
             const saveTransaction = await transaction.save();
             if(!saveTransaction){
