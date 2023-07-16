@@ -10,7 +10,7 @@ import SnackBarComponent from '../../../common/snackBar/SnackBar'
 const BooksDetailsMain = () => {
   const {handleOpenForm,
     formOpen,BookFormFormik,getAllBooks,handleDelte,messageClose,
-    notification,} = ForBookDetails();
+    notification,handleFormClose} = ForBookDetails();
 
   useEffect(()=>{
     getAllBooks();
@@ -35,7 +35,7 @@ const BooksDetailsMain = () => {
         :
         <TwohalfLayout
           sidebarsection={<SideBar />}
-          rendercomponent={<BookForm BookFormFormik={BookFormFormik}/>}
+          rendercomponent={<BookForm BookFormFormik={BookFormFormik} handleFormClose={handleFormClose}/>}
           isHeader={true}
 
           commonheader={<Headerlayout

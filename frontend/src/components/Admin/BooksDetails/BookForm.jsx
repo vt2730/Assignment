@@ -92,6 +92,7 @@ const BookForm = (props) => {
                         <div className='flex items-center gap-3'>
                             <ButtonFieldInput
                                 handleClick={() => {
+                                    props?.handleFormClose();
                                     props.BookFormFormik?.resetForm()
                                 }}
                                 extraTextCls={`!border !border-[#333333]  !rounded !capitalize !text-[#333333] !text-[16px] !font-semibold !py-1 !px-3`}

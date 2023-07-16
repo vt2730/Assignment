@@ -52,6 +52,10 @@ export const ForBookDetails = () => {
         setFormOpen(true);
     }
 
+    const handleFormClose = () => {
+        setFormOpen(false);
+    }
+
     const handleDelte = (book) => {
         deleteBooks(book?._id)
     }
@@ -153,5 +157,6 @@ export const ForBookDetails = () => {
         handleDelte,
         messageClose,
         notification,
+        handleFormClose
     }
 }
