@@ -5,10 +5,12 @@ import Headerlayout from '../../../common/Headerlayout'
 import TwohalfLayout from '../../../components/Layout/TwohalfLayout'
 import { ForBookDetails } from './Hooks'
 import BookForm from '../../../components/Admin/BooksDetails/BookForm'
+import SnackBarComponent from '../../../common/snackBar/SnackBar'
 
 const BooksDetailsMain = () => {
   const {handleOpenForm,
-    formOpen,BookFormFormik,getAllBooks,handleDelte} = ForBookDetails();
+    formOpen,BookFormFormik,getAllBooks,handleDelte,messageClose,
+    notification,} = ForBookDetails();
 
   useEffect(()=>{
     getAllBooks();
@@ -42,6 +44,15 @@ const BooksDetailsMain = () => {
             addbutton={false}
           />}
         />}
+
+      <SnackBarComponent
+        messageOpen={notification.open}
+        messageClose={messageClose}
+        notificationText={notification.message}
+        subText={notification.subText}
+        alertType={notification.alertType}
+        borderClass={notification.borderClass}
+      />
     </div>
   )
 }

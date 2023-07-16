@@ -68,7 +68,7 @@ function login(req){
               status: 400,
               error: true,
               code: "USER_NOT_FOUND",
-              message: "USER_NOT_FOUND",
+              message: "User not found",
             });
         }
         // Check if password is correct
@@ -77,7 +77,7 @@ function login(req){
                 status: 400,
                 error: true,
                 code: "INCORRECT_PASSWORD",
-                message: "INCORRECT_PASSWORD",
+                message: "Incorrect password",
               });
         }
         return resolve({
@@ -92,7 +92,7 @@ function login(req){
                 role: user.role,
             },
             code: "LOGIN_SUCCESSFUL",
-            message: "LOGIN_SUCCESSFUL",    
+            message: "Login successful",    
         });
         }catch(err){
             console.error(err,"login error")
