@@ -13,13 +13,25 @@ const libraryTransaction = new Schema({
     },
     transactionType: {
         type: String,
-        default: "active",
-        enum: ["borrow", "return","active"],
+        default: "borrow",
+        enum: ["borrow", "return"],
     },
     dueDate: {
         type: Number,
         default: Date.now(),
     }
 },{timestamps: true});
+
+libraryTransaction.pre("find", function (next) {
+    this.populate("users")
+    this.populate("book")
+    next()
+})
+
+libraryTransaction.pre("findOne", function (next) {
+    this.populate("user")
+    this.populate("books")
+    next()
+})
 
 module.exports = mongoose.model("libraryTransaction", libraryTransaction);

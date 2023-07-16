@@ -7,20 +7,10 @@ function borrowBook(req){
         try{
             const{ userId, bookId, dueDate} = req.body;
 
-            const user = await userModel.findById(userId);
-            const book = await bookModel.findById(bookId);
-            if(!user || !book){
-                return reject({
-                    status: 404,
-                    error: true,
-                    code: "BOOKS_USER_NOT_FOUND",
-                    message: "Books not found"
-                  })
-            }
-            // let currDate = new Date()
+            
             const transaction = new transactionModel({
-                user: user?._id,
-                book: book?._id,
+                user: userId,
+                book: bookId,
                 dueDate: dueDate
             })
             const saveTransaction = await transaction.save();
