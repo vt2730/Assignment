@@ -203,6 +203,7 @@ export const ForBookDetails = () => {
             .then((res) => {
                 if(!res.error){
                     setOpenBorrowModal(false);
+                    getAllBooks()
                     openMessageLogin("success", "Success", res.message, "success")
                 }else if(res?.code === "TRANSACTION_CREATE_FAILED"){
                     openMessageLogin("error", "Error", res.message, "error")

@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from "./index.module.css"
 import moment from "moment"
 import { useDispatch, useSelector } from 'react-redux'
 
 const LibraryTransaction = () => {
   const transactionDetails = useSelector((state) => state.transaction.transactionDetails)
+
+  useEffect(()=>{console.log(transactionDetails,"transactionDetails *")},[transactionDetails])
 
   const transaction = [
     {
@@ -35,20 +37,20 @@ const LibraryTransaction = () => {
             </tr>
           </thead>
           {
-            transaction && transaction?.length > 0 &&
-            transaction?.map((item, idx)=>{
+            transactionDetails && transactionDetails?.length > 0 &&
+            transactionDetails?.map((item, idx)=>{
               return(
                 <tbody key={idx}>
                   <tr className={`h-12 bg-white`}>
-                    <td className={`text-left text-[#252525] text-[13px] font-normal pl-4`}>{item?.name}</td>
-                    <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.book}</td>
-                    <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.author}</td>
+                    <td className={`text-left text-[#252525] text-[13px] font-normal pl-4`}>{item?.user?.name}</td>
+                    <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.book?.name}</td>
+                    <td className={`text-left text-[#252525] text-[13px] font-normal`}>{item?.book?.author}</td>
                     <td className={`text-left text-[13px] font-normal pr-5`}>
                       {moment(item?.dueDate).format('LL')}
                     </td>
                     <td className={`text-center text-[13px] font-normal pr-5`}> 
                     <div className={`rounded-3xl w-[6rem] py-1 text-white capitalize ${item?.type === 'borrow' ? "bg-[#F44336]" : "bg-[#00C853]"}`}>
-                      {item?.type}
+                      {item?.transactionType}
                       </div>
                     </td>
                   </tr>
