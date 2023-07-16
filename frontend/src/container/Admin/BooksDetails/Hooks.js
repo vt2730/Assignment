@@ -48,7 +48,8 @@ export const ForBookDetails = () => {
                 bodyData: {
                     name: values?.name,
                     author: values?.author,
-                    availability: values?.status === 'available' ? true : false
+                    availability: values?.status === 'available' ? true : false,
+                    role: role
                 }
             }
             console.log(data,"post values *");

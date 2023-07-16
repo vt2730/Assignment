@@ -1,7 +1,10 @@
 import React from 'react'
 import ButtonFieldInput from '../buttonField/ButtonFieldInput';
+import getLocalStorageData from '../../utils/getLocalStorageData';
 
 const Headerlayout = (props) => {
+    const role = getLocalStorageData('role')
+
     return (
         <div className={`flex w-full justify-between items-center`} >
             <div className={`flex gap-5 items-center h-fit w-[13em]`}>
@@ -16,8 +19,9 @@ const Headerlayout = (props) => {
                         name={props.buttonname}
                         type="submit"
                         variant="contained"
+                        disabled={role === 'admin' ? false : true}
                         handleClick={props.handleClick}
-                        buttonextracls={`!bg-[#083F88] w-24 !capitalize !rounded-lg`}
+                        buttonextracls={role === 'admin' ? `!bg-[#083F88] w-24 !capitalize !rounded-lg` : `!bg-gray w-24 !capitalize !rounded-lg`}
                     />
                 )
                     :
