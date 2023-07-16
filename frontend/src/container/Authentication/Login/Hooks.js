@@ -1,12 +1,15 @@
 import { useFormik } from 'formik';
 import * as Yup from "yup"
-import { doPostApiCall } from '../../../utils/ApiConfig';
+import { doGetApiCall, doPostApiCall } from '../../../utils/ApiConfig';
 import { useNavigate ,useLocation} from "react-router"
+import { useDispatch } from 'react-redux';
+import { getUsers } from './userReducer';
 
 const PUBLIC_apiurl = 'http://192.168.1.6:5000/api';
 export const ForLogin = () => {
 
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const LoginForm = useFormik({
         initialValues: {
@@ -47,7 +50,23 @@ export const ForLogin = () => {
             })
     }
 
+    const getAllUsers = () => {
+        let data = {
+            url: `${PUBLIC_apiurl}/users`
+        }
+        doGetApiCall(data)
+            .then((res) => {
+                if(!res.error){
+                    dispatch(getUsers(res?.result))
+                }
+            })
+            .catch((err) => {
+                console.error(err);
+            });
+    }
+
     return{
-        LoginForm
+        LoginForm,
+        getAllUsers
     }
 }
