@@ -1,8 +1,11 @@
 import React from 'react'
 import styles from "./index.module.css"
 import moment from "moment"
+import { useDispatch, useSelector } from 'react-redux'
 
 const LibraryTransaction = () => {
+  const transactionDetails = useSelector((state) => state.transaction.transactionDetails)
+
   const transaction = [
     {
       name: "user 01",

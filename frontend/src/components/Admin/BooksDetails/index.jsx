@@ -4,6 +4,7 @@ import deleteImg from "../../../Images/deleteicon.svg"
 import styles from "./index.module.css"
 import { useDispatch, useSelector } from 'react-redux'
 import getLocalStorageData from '../../../utils/getLocalStorageData'
+import BorrowModal from './BorrowModal'
 
 const BooksDetails = (props) => {
   const bookDetails = useSelector((state) => state.book.books)
@@ -17,6 +18,7 @@ const BooksDetails = (props) => {
               <th className={`text-left text-[#212121]  text-[13px] font-semibold px-3`}>Book Name</th>
               <th className={`text-left text-[#212121] w-[14%] text-[13px] font-semibold`}>Author</th>
               <th className={`text-left text-[#212121]  text-[13px] font-semibold`}>availability</th>
+              <th className={`text-left text-[#212121]  text-[13px] font-semibold`}>Borrow Book</th>
               <th className={`text-left text-[#212121] w-[5%] text-[13px] font-semibold`}>Action</th>
             </tr>
           </thead>
@@ -33,8 +35,13 @@ const BooksDetails = (props) => {
                       {item?.availability === true ? 'available' : 'unavailable'}
                       </div>
                     </td>
+                    <td className={`text-center text-[13px] font-normal pr-5`} onClick={() => {item?.availability === true ? props.handleOpenModal(item) : console.log("hi")}}>
+                      <div className={(role === 'admin' && item?.availability === true) ? `rounded-3xl w-[6rem] py-1 text-black capitalize bg-[#ADD8E6] cursor-pointer` : `rounded-3xl w-[6rem] py-1 text-black capitalize bg-[#ADD8E6] cursor-not-allowed`}>
+                        Borrow
+                      </div>
+                    </td>
                     <td className={`text-right pr-3 `}>
-                      <div className={role === 'admin' ? ` flex items-center justify-end gap-5 cursor-pointer` : `flex items-center justify-end gap-5 cursor-not-allowed`}>
+                      <div className={(role === 'admin' ) ? ` flex items-center justify-end gap-5 cursor-pointer` : `flex items-center justify-end gap-5 cursor-not-allowed`}>
                         {/* <p className='cursor-pointer' onClick={() => props.handleEditClick(item)}>
                           <img src={edit} alt="edit" />
                         </p> */}
@@ -49,6 +56,14 @@ const BooksDetails = (props) => {
             })
           }
       </table>
+      {props.openBorrowModal ? <BorrowModal
+        open={props.openBorrowModal}
+        handleClose={props.handleCloseModal}
+        title={"Borrow Book"}
+        titlecls={`flex justify-between items-center border-b border-slate-200 px-3 py-3 text-black`}
+        borrowFormik={props.borrowFormik}
+        handleDateFilter={props.handleDateFilter} dateFilter={props.dateFilter}
+      />: null}
     </div>
   )
 }

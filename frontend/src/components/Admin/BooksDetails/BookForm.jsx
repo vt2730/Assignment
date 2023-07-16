@@ -82,7 +82,6 @@ const BookForm = (props) => {
                                     props.BookFormFormik?.errors?.status
                                 }
                                 clickEnter={props.BookFormFormik?.handleSubmit}
-                                disabled={props?.editUserFormData ? true : false}
                             />
                         </div>
                     </div>

@@ -42,7 +42,40 @@ function borrowBook(req){
     })
 }
 
+function getTransaction(req){
+    return new Promise(async (resolve, reject) => {
+        try{
+            const transaction = await transactionModel();
+            if(!transaction){
+                return reject({
+                    status: 404,
+                    error: true,
+                    result: [],
+                    code: "TRANSACTION_NOT_FOUND",
+                    message: "Transaction not found"
+                  })
+            }
+            return resolve({
+                status: 200,
+                error: false,
+                result: transaction,
+                code: "TRANSACTION_FOUND",
+                message: "Transaction found successfully"
+              })
+        }catch(err) {
+            return reject({
+                status: 500,
+                error: true,
+                err: error,
+                code: "INTERNAL_SERVER_ERROR",
+                message: "INTERNAL_SERVER_ERROR"
+              })
+        }
+    })
+}
+
 
 module.exports = {
-    borrowBook
+    borrowBook,
+    getTransaction
 }

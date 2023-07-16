@@ -17,10 +17,16 @@ const libraryTransaction = new Schema({
         enum: ["borrow", "return"],
     },
     dueDate: {
-        type: Number,
+        type: String,
         default: Date.now(),
     }
 },{timestamps: true});
+
+libraryTransaction.pre("save", function (next) {
+    this.populate("users")
+    this.populate("book")
+    next()
+})
 
 libraryTransaction.pre("find", function (next) {
     this.populate("users")

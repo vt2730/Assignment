@@ -3,15 +3,13 @@ import LibraryTransaction from '../../../components/Admin/LibTransaction'
 import SideBar from '../../../components/Layout/SideBar/SideBar'
 import TwohalfLayout from '../../../components/Layout/TwohalfLayout'
 import Headerlayout from '../../../common/Headerlayout'
-import { ForLogin } from '../../Authentication/Login/Hooks'
-import { useSelector } from 'react-redux'
+import { ForLibTransaction } from './Hooks'
 
 const LibraryTransactionMain = () => {
-  const {getAllUsers} = ForLogin()
-  const allUsers = useSelector((state) => state.user.users)
+  const {getAllTransaction} = ForLibTransaction()
 
   useEffect(()=>{
-    getAllUsers();
+    getAllTransaction()
   },[])
   return (
     <div className={`bg-[#F0F2F9] h-screen`}>

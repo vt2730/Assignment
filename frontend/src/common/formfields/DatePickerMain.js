@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styles from "./Index.module.css";
 
-const DatePickerMain = () => {
+const DatePickerMain = (props) => {
     return (
         <div className={`${styles.datepickerMain}  ${props.mainCls}`}>
             <label className={`font-normal text-[14px] mb-1.5 ${props.lableCls}`}>{props.label}</label>
